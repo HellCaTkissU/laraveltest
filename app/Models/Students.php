@@ -9,6 +9,7 @@ class Students extends Model
 //    protected $table="myfirst_table";
 
     protected $fillable = [
+        'id',
         'name',
     ];
 }

@@ -15,6 +15,9 @@ Route::get('/subjects', [UniverController::class, 'list_sub']);
 Route::get('/groups', [UniverController::class, 'list_g']);
 
 
+Route::get('/student/',[UniverController::class, 'list_s_id']);
+
+
 
 
 ?>
