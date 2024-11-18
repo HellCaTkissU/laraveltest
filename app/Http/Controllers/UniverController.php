@@ -2,35 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Groups;
 use App\Models\Students;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use App\Models\StdGrpV2;
 
 class UniverController extends Controller
 {
-    public function list_s_id(){
-
-        $id = request()->get('id');
-        $testmvc = \App\Models\Students::where('id', $id)->get();
-        return $testmvc;
-    }
-
-
     public function list_s(){
 
-        $testmvc = \App\Models\Students::all();
+        $students = Students::with('groups')->get();
+
+        return response()->json($students);
+
+    }
+
+    public function list_s_id()
+    {
+        $id = request()->get('id');
+        $testmvc = \App\Models\Students::with('groups')->where('id', $id)->get();
         return $testmvc;
     }
 
-//    public function getSingle($slug) {
-//        $post = Post::where('slug', $slug)->take(1)->get();
-//        return view('blog/single')->with('post', $post);
-//    }
+    public function teststd(){
+        $testmvc = \App\Models\StdGrpV2::all();
+        return $testmvc;
+    }
 
-
-
-
-    public function list_t(){
-
+    public function list_t(): BelongsTo
+    {
         $testmvc = \App\Models\Teachers::all();
         return $testmvc;
     }

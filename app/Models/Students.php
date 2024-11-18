@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Testing\Fluent\Concerns\Has;
+
 
 class Students extends Model
 {
-//    protected $table="myfirst_table";
+    protected $table = 'students';
 
-    protected $fillable = [
-        'id',
-        'name',
-    ];
+    public function groups()
+    {
+        return $this->belongsToMany(Groups::class, 'std_grp_v2', 'std_id', 'grp_id');
+    }
+
 }
